@@ -91,6 +91,11 @@ describe Array do
 			expect(array.inject([]) { |memo, hash| memo << hash[:name] }).to eq ["A", "B", "C"]
 		end
 
+		it "can be used to combine an array of arrays" do
+			array = [["Ginsberg", "Dylan", "Cunningham", "Cage"], ["Lenny Bruce", "Langston Hughes"], ["Uta", "Buddha", "Pablo Neruda"]]
+			expect(array.inject("") { |string, array| string << ", " unless string.empty?; string << array.join(", ") }).to eq "Ginsberg, Dylan, Cunningham, Cage, Lenny Bruce, Langston Hughes, Uta, Buddha, Pablo Neruda"
+		end
+
 	end
 
 end
