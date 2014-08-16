@@ -24,4 +24,24 @@ describe Array do
 
 	end
 
+	context "select method" do
+
+		it "fails if not called on an array" do
+			expect{ String.new.select }.to raise_error
+		end
+
+		it "returns an array if a block is passed" do
+			expect(array.select { |x| x }.class).to eq Array
+		end
+
+		it "returns an enumerator if no block is passed" do
+			expect(array.select.class).to eq Enumerator
+		end
+
+		it "selects elements for which the block returns true" do
+			expect(array.select { |x| x.odd? }).to eq [1, 3, 5]
+		end
+
+	end
+
 end
