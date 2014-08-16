@@ -65,11 +65,9 @@ describe Array do
 		end
 
 		it "calls the given block once for each element" do
-			output_each = []
-			output_for = []
-			array.each { |x| output_each << x * x }
-			for x in array do output_for << x * x end
-			expect(output_each).to eq output_for
+			output = []
+			array.each { |x| output << x * x }
+			expect(output).to eq [1, 4, 9, 16, 25]
 		end
 
 	end
