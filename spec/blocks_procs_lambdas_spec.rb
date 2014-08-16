@@ -74,4 +74,13 @@ describe Array do
 
 	end
 
+	context "inject method" do
+
+		it "can be used to join an array of strings" do
+			array = ["This", "is", "a", "sentence"]
+			expect(array.inject { |sentence, word| sentence << " " unless sentence.empty?; sentence << word }).to eq "This is a sentence"
+		end
+
+	end
+
 end
