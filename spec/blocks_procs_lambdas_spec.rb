@@ -44,4 +44,29 @@ describe Array do
 
 	end
 
+	context "each method" do
+
+		it "fails if called on a string" do
+			string = String.new
+			expect{ string.each }.to raise_error
+		end
+
+		it "can be called on a hash" do
+			expect{ Hash.new.each }.not_to raise_error
+		end
+
+		it "returns an enumerator if no block is passed" do
+			expect(array.each.class).to eq Enumerator
+		end
+
+		it "calls the given block once for each element" do
+			output_each = []
+			output_for = []
+			array.each { |x| output_each << x * x }
+			for x in array do output_for << x * x end
+			expect(output_each).to eq output_for
+		end
+
+	end
+
 end
