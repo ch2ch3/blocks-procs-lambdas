@@ -81,9 +81,14 @@ describe Array do
 			expect(array.inject { |sentence, word| sentence << " " unless sentence.empty?; sentence << word }).to eq "This is a sentence"
 		end
 
-		
+
 		it "can be used to sum an array of numbers" do
-			expect(array.inject { |sum, number| sum + number }).to eq 15
+			expect(array.inject(:+)).to eq 15
+		end
+
+		it "can be used to get specific attributes from an array of hashes" do
+			array = [{:name => "A", :age => 21}, {:name => "B", :age => 42}, {:name => "C", :age => 17}]
+			expect(array.inject([]) { |memo, hash| memo << hash[:name] }).to eq ["A", "B", "C"]
 		end
 
 	end
