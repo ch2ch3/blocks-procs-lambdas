@@ -22,6 +22,11 @@ describe Array do
 			expect(array.map{ |x| x + 10 }).to eq [11, 12, 13, 14, 15]
 		end
 
+		it "can be used with a proc instead of a block" do
+			my_proc = Proc.new { |x| x * x }
+			expect(array.map(&my_proc)).to eq [1, 4, 9, 16, 25]
+		end
+
 	end
 
 	context "select method" do
