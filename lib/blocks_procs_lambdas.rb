@@ -24,4 +24,15 @@ class Array
 		output
 	end
 
+	def each()
+		if block_given?
+			for element in 0...self.size do
+				yield(self[element])
+			end
+			self
+		else
+			return to_enum :each
+		end
+	end
+
 end
