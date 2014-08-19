@@ -29,6 +29,31 @@ describe Array do
 
 	end
 
+	context "recursive map method" do
+
+		it "fails if not called on an array" do
+			expect{ String.new.recursive_map }.to raise_error
+		end
+
+		it "returns an array if a block is passed" do
+			expect(array.recursive_map { |x| x }.class).to eq Array
+		end
+
+		it "returns an enumerator if no block is passed" do
+			expect(array.recursive_map.class).to eq Enumerator
+		end
+
+		it "invokes the given block once for each element" do
+			expect(array.recursive_map{ |x| x + 10 }).to eq [11, 12, 13, 14, 15]
+		end
+
+		it "can be used with a proc instead of a block" do
+			my_proc = Proc.new { |x| x * x }
+			expect(array.recursive_map(&my_proc)).to eq [1, 4, 9, 16, 25]
+		end
+
+	end
+
 	context "select method" do
 
 		it "fails if not called on an array" do

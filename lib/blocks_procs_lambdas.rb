@@ -12,6 +12,16 @@ class Array
 		output
 	end
 
+	def recursive_map(&block)
+		if block_given?
+			copy = self.dup
+			return [] if copy.empty?
+			return [block.call(copy.shift)].concat copy.recursive_map(&block)
+		else
+			return to_enum :map
+		end
+	end
+
 	def select()
 		output = []
 		if block_given?
