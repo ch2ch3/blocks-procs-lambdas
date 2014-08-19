@@ -16,9 +16,9 @@ class Array
 		if block_given?
 			copy = self.dup
 			return [] if copy.empty?
-			return [block.call(copy.shift)].concat copy.recursive_map(&block)
+			return [block.call(copy.shift)].concat(copy.recursive_map(&block))
 		else
-			return to_enum :map
+			return to_enum :recursive_map
 		end
 	end
 
